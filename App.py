@@ -71,3 +71,5 @@ if __name__ == '__main__':
 
 
 @app.route('prueba_git')
+
+@app.route('prueba2_git')
