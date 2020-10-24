@@ -1,3 +1,7 @@
+function saludo(){
+    alert (btnArray)
+}
+
 const btnDelete = document.querySelectorAll('.btn-delete')
 
 if (btnDelete) {
@@ -9,10 +13,6 @@ if (btnDelete) {
             }
         });
     });
-}
-
-function saludo(){
-    alert (btnArray)
 }
 
 
