@@ -1,5 +1,5 @@
 function saludo(){
-    alert (btnArray)
+    alert ("Esta es la hp alerta!!!")
 }
 
 const btnDelete = document.querySelectorAll('.btn-delete')
