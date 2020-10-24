@@ -11,6 +11,9 @@ if (btnDelete) {
     });
 }
 
+function saludo(){
+    alert (btnArray)
+}
 
 
 
@@ -37,9 +40,7 @@ if (btnDelete) {
 
 
 
-function saludo(){
-    alert (btnArray)
-}
+
 
 
 // function dilit(){
