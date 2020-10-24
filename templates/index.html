@@ -1,18 +1,22 @@
 <!--flask utiliza un motor de plantillas jinja2, por eso se puede usar ifs, fors, etc -->
 {% extends 'layaout.html'%}
+<!-- <script type=text/javascript src="{{url_for('static', filename='js/main.js')}}"></script> -->
 
 {% block body%}
+
 
 <h1>POR PONER UN CAMBIO PARA GIT</h1>
 <h2>Esta edición ha sido realizada desde GitHub</h2>
 <h2>Esta 2da edición ha sido realizada desde GitHub</h2>
+<input type="button" value="Presione" onmouseover="saludo()">
+<h3>{{contacts}}</h3>
 
 <div class="row">
     <div class="col-md-5">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
-        <p></p>
+        
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{message}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -23,16 +27,18 @@
         {% endfor%}
         {% endif %}
         {% endwith%}
+
+        <h1>{{contacts.fullname}}</h1>
         <div class="card card-body">
             <form action="/add_contact" method="POST">
                 <div class="form-group">
-                    <input type="text" name="fullname" placeholder="Nombre Completo" class="form-control">
+                    <input type="text" name="fullname" placeholder="Nombre Completo" class="form-control" value="{{contacts.fullname}}">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="phone" placeholder="Teléfono" class="form-control">
+                    <input type="text" name="phone" placeholder="Teléfono" class="form-control" value="{{contacts.phone}}">
                 </div>                
                 <div class="form-group">
-                    <input type="text" name="email" placeholder="Correo electrónico" class="form-control">
+                    <input type="text" name="email" placeholder="Correo electrónico" class="form-control" value="{{contacts.email}}">
                 </div>                
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">
@@ -40,7 +46,6 @@
                     </button>
                 </div>
             </form>
-
         </div>
     </div>
     <div class="col-md-7">
@@ -53,7 +58,7 @@
                     <td>Operaciones</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>                 
                 {% for contact in contacts %}
                     <tr>
                         <td>{{ contact.1 }}</td>
@@ -61,14 +66,15 @@
                         <td>{{ contact.3 }}</td>
                         <td>
                             <a href="/edit/{{contact.0}}" class="btn btn-secondary">Editar</a>
-                            <a href="/delete/{{contact.0}}" class="btn btn-danger btn-delete">Eliminar</a>
+                            <a href="/delete/{{contact.0}}" class="btn btn-danger btn-delete">Eliminar</a>                                                      
                         </td>
                     </tr>            
                 {% endfor %}
-            </tbody>
+            </tbody>            
         </table>
     </div>
 </div>
 
+<!-- <script type=text/javascript src="{{url_for('static', filename='js/main.js')}}"></script> -->
 
 {% endblock %}

@@ -26,17 +26,25 @@ def add_contact():
         fullname = request.form['fullname']
         phone = request.form['phone']
         email = request.form['email']
-        cur = mysql.connection.cursor()
-        cur.execute('insert into contactos (fullname,phone,email) values (%s,%s,%s)', (fullname,phone,email))
-        mysql.connection.commit()
-        flash('Contacto agregado correctamente')
+
+        if ((fullname == "") or (phone == "") or (email == "")):
+            flash('Falta diligenciar uno o varios campos')
+            ctx = {"fullname": fullname, "phone": phone, "email": email}
+            return render_template('index.html', contacts=ctx)  
+        else:
+            cur = mysql.connection.cursor()
+            cur.execute('insert into contactos (fullname,phone,email) values (%s,%s,%s)', (fullname,phone,email))
+            mysql.connection.commit()
+            flash('Contacto agregado correctamente')
+
+        
         return redirect(url_for('Index'))
         
 
 @app.route('/edit/<id>')
 def get_contact(id):
     cur = mysql.connection.cursor()
-    cur.execute('select * from contactos where id = %s', (id))
+    cur.execute('select * from contactos where id = %s', [id])
     data = cur.fetchall()
     return render_template('edit_contact.html', contact = data[0])
 
@@ -70,6 +78,6 @@ if __name__ == '__main__':
     app.run(port = 3000, debug = True)
 
 
-@app.route('prueba_git')
+#@app.route('prueba_git')
 
-@app.route('prueba2_git')
+#@app.route('prueba2_git')
