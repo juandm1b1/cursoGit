@@ -37,9 +37,9 @@ if (btnDelete) {
 
 
 
-// function saludo(){
-//     alert (btnArray)
-// }
+function saludo(){
+    alert (btnArray)
+}
 
 
 // function dilit(){
